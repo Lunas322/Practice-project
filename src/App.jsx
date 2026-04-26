@@ -1,15 +1,13 @@
-import { Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Home from './pages/Home'
+import { NavLink, Routes, Route } from 'react-router-dom'
+
 
 function App() {
   return (
-    <div>
-      <Header />
-        <Routes>
-          <Route path='/' element={<Home />} />
-        </Routes>
-    </div>
+   <>
+    <Routes>
+      <Route path='/' element={<h1>Home</h1>} />
+    </Routes>
+   </>
   )
 }
 
