@@ -20,6 +20,7 @@ function Home() {
 
     function donelist(id) {
         setList(prev => prev.map(item => item.id === id ? {...item, isDone: !item.isDone} : item))
+        
     }
   return (
   <>
