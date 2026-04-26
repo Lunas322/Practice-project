@@ -10,12 +10,17 @@ function Home() {
     function addlist(){
         if(text.length === 0) return;
 
-        setList(prev => [...prev, {id: Date.now(), text: text}])
+        setList(prev => [...prev, {id: Date.now(), text: text, isDone: false}])
         setText("");
     }
 
     function dellist(id) {
         setList(prev => prev.filter(item => item.id !== id))
+    }
+
+    function donelist(id) {
+        setList(prev => prev.map(item => item.id === id ? {...item, isDone: !item.isDone} : item))
+        
     }
   return (
   <>
@@ -26,7 +31,9 @@ function Home() {
           <Text
             key={item.id}
             text={item.text}
+            isDone={item.isDone}
             onDelete={() => dellist(item.id)}
+            onDone={() => donelist(item.id)}
           />
         ))}
       </div>    
