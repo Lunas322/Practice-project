@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Text from "../components/Text";
 import TodoInput from "../components/InputTodo";
 import ButtonTodo from "../components/ButtonTodo";
 
 function Home() {
     const [text, setText] = useState(""); 
-    const [list, setList] = useState([]);
+    const [list, setList] = useState(()=> {
+        const savedlist = localStorage.getItem("TODO_LIST");
+        if(savedlist) {
+            return JSON.parse(savedlist);
+        } else {
+            return [];
+        }
+    });
+    // 삼항 연산자로 변경 예정
 
     function addlist(){
         if(text.length === 0) return;
@@ -22,6 +30,10 @@ function Home() {
         setList(prev => prev.map(item => item.id === id ? {...item, isDone: !item.isDone} : item))
         
     }
+
+    useEffect(()=> {
+        localStorage.setItem("TODO_LIST", JSON.stringify(list));
+    },[list])
   return (
   <>
     <div className="bg-slate-200 w-full h-screen flex justify-center flex-col gap-8 items-center overflow-hidden">
