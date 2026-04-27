@@ -1,5 +1,4 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
 
 function Header() {
   return (
@@ -10,5 +9,6 @@ function Header() {
         </header>
   );
 }
+// 넣을 타입이 없음 추후 props가 생긴다면 타입을 넣어주면 됨
 
 export default Header;
