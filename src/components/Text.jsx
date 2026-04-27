@@ -10,7 +10,7 @@ function Text({text,onDelete, onDone, isDone}) {
                 <div className="w-5 h-5 bg-gray-100 rounded-full"></div>
                 <div className="w-5 h-5 bg-gray-100 rounded-full"></div>
                 </div>
-                <div id="main" onClick={onDone} className={`w-full h-full bg-slate-100 rounded-lg p-2 text-xl font-bold flex items-center ${isDone ? "bg-green-300":""}`}>{text}</div>
+                <div id="main" onClick={onDone} className={`w-full h-full bg-slate-100 rounded-lg p-2 text-xl font-bold flex items-center ${isDone ? "bg-green-400":""}`}>{text}</div>
                      <div className="bg-white w-5 h-5 ml-2 flex justify-center items-center rounded-full ">
                         <button className="w-full h-full font-bold flex justify-center items-center  hover:text-green-500" onClick={onDelete}>X</button>
                      </div>
