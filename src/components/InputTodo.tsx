@@ -1,10 +1,6 @@
 import React from "react";
+import { TodoInputProps } from "../types/todo";
 
-type TodoInputProps = {
-    text:string;
-    setText: React.Dispatch<React.SetStateAction<string>>
-    onEnter: () => void;
-}
 function TodoInput({text, setText, onEnter}:TodoInputProps) {
         //string | (prev: string) => string dispatch는 setState의 타입이 string이 될 수도 있고
         //  이전 상태를 받아서 새로운 상태를 반환하는 함수가 될 수도 있기 때문에 이렇게 작성

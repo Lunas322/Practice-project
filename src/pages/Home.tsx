@@ -2,12 +2,9 @@ import { useEffect, useState } from "react";
 import Text from "../components/Text";
 import TodoInput from "../components/InputTodo";
 import ButtonTodo from "../components/ButtonTodo";
+import { ToDo } from "../types/todo";
  //타입은 파스칼케이스, 함수는 카멜케이스, 파일은 케밥케이스로 작성하자.
-type ToDo = {
-    id: number;
-    text: string;
-    isDone: boolean;
-}
+
 
 function Home() {
     const [text, setText] = useState<string>(""); 
@@ -43,8 +40,7 @@ function Home() {
         {list.map((item) => (
           <Text 
             key={item.id}
-            text={item.text}
-            isDone={item.isDone}
+            todo={item}
             onDelete={() => dellist(item.id)}
             onDone={() => donelist(item.id)}
           />
