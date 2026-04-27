@@ -1,37 +1,12 @@
-import { useEffect, useState } from "react";
+
 import Text from "../components/Text";
 import TodoInput from "../components/InputTodo";
 import ButtonTodo from "../components/ButtonTodo";
-import { ToDo } from "../types/todo";
- //타입은 파스칼케이스, 함수는 카멜케이스, 파일은 케밥케이스로 작성하자.
+import { useTodo } from "../hooks/useTodo";
 
 
 function Home() {
-    const [text, setText] = useState<string>(""); 
-    const [list, setList] = useState<ToDo[]>(()=> {
-        const savedlist = localStorage.getItem("TODO_LIST");
-        return savedlist ? (JSON.parse(savedlist) as ToDo[]): [];
-    });
-    
-    function addlist(){
-        if(text.length === 0) return;
-
-        setList(prev => [...prev, {id: Date.now(), text: text, isDone: false}])
-        setText("");
-    }
-
-    function dellist(id: number) {
-        setList(prev => prev.filter(item => item.id !== id))
-    }
-
-    function donelist(id:number) {
-        setList(prev => prev.map(item => item.id === id ? {...item, isDone: !item.isDone} : item))
-        
-    }
-
-    useEffect(()=> {
-        localStorage.setItem("TODO_LIST", JSON.stringify(list));
-    },[list])
+    const {text, setText, list, addList, delList, doneList} = useTodo();
   return (
   <>
     <div className="bg-slate-200 w-full h-screen flex justify-center flex-col gap-8 items-center overflow-hidden">
@@ -41,15 +16,15 @@ function Home() {
           <Text 
             key={item.id}
             todo={item}
-            onDelete={() => dellist(item.id)}
-            onDone={() => donelist(item.id)}
+            onDelete={() => delList(item.id)}
+            onDone={() => doneList(item.id)}
           />
         ))}
       </div>    
 
       <div className="w-3/5 h-20 p-2 bg-gray-300 flex justify-between items-center border-2 border-gray-900 rounded-2xl">
-        <TodoInput text={text} setText={setText} onEnter={addlist}/>
-        <ButtonTodo addlist={addlist}/>
+        <TodoInput text={text} setText={setText} onEnter={addList}/>
+        <ButtonTodo addlist={addList}/>
       </div>
 
     </div>
